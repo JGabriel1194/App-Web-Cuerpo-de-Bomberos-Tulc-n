@@ -1,0 +1,17 @@
+body {
+  background: #f5f6f5;
+  font-family: "Oswald", sans-serif;
+  overflow: hidden;
+}
+
+.navbar {
+  font-size: 22px;
+}
+
+header {
+  padding: 75px 0 0;
+}
+
+section {
+  padding: 150px 0;
+}
