@@ -1,7 +1,6 @@
 body {
   background: #f5f6f5;
   font-family: "Oswald", sans-serif;
-  overflow: hidden;
 }
 
 .navbar {
@@ -9,9 +8,12 @@ body {
 }
 
 header {
-  padding: 75px 0 0;
+  padding: 156px 0 100px;
 }
 
 section {
-  padding: 150px 0;
+  padding: 175px 0;
+}
+main {
+  padding: 66px 0 100px;
 }
