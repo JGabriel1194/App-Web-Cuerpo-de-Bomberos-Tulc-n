@@ -1,0 +1,75 @@
+<main1 id="page-top">
+  <div id="wrapper">
+    {{> sidebar}}
+    <div id="content-wrapper">
+
+      <div class="container-fluid">
+
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
+          <li class="breadcrumb-item">Usuarios</li>
+        </ol>
+
+        {{> messaje}}
+
+        <!-- DataTables Example -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            Lista de Usuarios
+            <a class="btn btn-success float-right" href="/users/add">
+              Nuevo Usuario
+            </a>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Cédula</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Rango</th>
+                    <th>Rol</th>
+                    <th>Tareas</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>Cédula</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Rango</th>
+                    <th>Rol</th>
+                    <th>Tareas</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  {{#each users}}
+                  <tr>
+                    <td>{{Cedula}}</td>
+                    <td> {{Nombres}}</td>
+                    <td>{{Apellidos}} </td>
+                    <td>{{Rango}} </td>
+                    <td>{{Rol}} </td>
+                    <td>
+                      <a href="/users/edit/{{idPersonal}}" class="btn btn-primary">Editar</a>
+                      <a href="/users/delete/{{idPersonal}}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- /.content-wrapper -->
+  </div>
+</main1>

@@ -17,3 +17,18 @@ section {
 main {
   padding: 66px 0 100px;
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}

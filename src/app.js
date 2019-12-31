@@ -27,7 +27,7 @@ app.set('view engine','.hbs');
 
 //Midlewars
 app.use(session({
-    secret: 'gabriel',
+    secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false,
     store: new MySqlStore(database)
@@ -51,6 +51,7 @@ app.use((req,res,next) =>{
 app.use(require('./routes'));
 app.use(require('./routes/autentication'));
 app.use('/links',require('./routes/links'));
+app.use('/users',require('./routes/users'));
 
 
 //Public

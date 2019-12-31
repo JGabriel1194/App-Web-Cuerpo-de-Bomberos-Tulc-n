@@ -31,17 +31,21 @@ passport.use('local.signup',new LocalStrategy({
     passwordField: 'Contrasenia',
     passReqToCallback: true
 },async (req,Cedula,Contrasenia,done)=>{
-    const {Nombres,Apellidos} = req.body;
+    const {Nombres,Apellidos,idRango,idRol} = req.body;
     const newUser = {
         Cedula,
         Nombres,
         Apellidos,
+        idRango,
+        idRol,
         Contrasenia
     };
+    console.log(newUser)
     newUser.Contrasenia = await helpers.encryptPassword(Contrasenia);
 
     const result = await pool.query('INSERT INTO Personal SET ?', [newUser]);
     newUser.idPersonal = result.insertId;
+    req.flash('success','Usuario creado correctamente');
     return done(null,newUser);
 }));
 
@@ -50,6 +54,7 @@ passport.serializeUser((user,done)=>{
 });
 
 passport.deserializeUser(async (idPersonal, done) =>{
+    console.log('serial',idPersonal)
     const rows = await pool.query('SELECT * FROM Personal WHERE idPersonal = ?', [idPersonal]);
     done (null,rows[0]);
 });
