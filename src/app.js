@@ -6,7 +6,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const MySqlStore = require('express-mysql-session');
 const passport = require('passport');
-
+const fileUpload = require('express-fileupload');
 const {database} = require('./keys');
 
 //Initializations 
@@ -38,6 +38,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(fileUpload());
 
 //Global variable
 app.use((req,res,next) =>{
@@ -52,6 +53,7 @@ app.use(require('./routes'));
 app.use(require('./routes/autentication'));
 app.use('/links',require('./routes/links'));
 app.use('/users',require('./routes/users'));
+app.use('/ranges',require('./routes/ranges'));
 
 
 //Public

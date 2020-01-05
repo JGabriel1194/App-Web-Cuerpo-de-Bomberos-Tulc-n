@@ -1,9 +1,8 @@
 const express = require ('express');
 const router = express.Router();
-const pool = require('../database');
 const Users = require('../modell/users');
 const Ranges = require('../modell/ranges');
-const Roles = require('../modell/role');
+const Roles = require('../modell/roles');
 const passport = require('passport');
 const {isLoggedIn , isNotLoggedIn} = require('../lib/auth');
 

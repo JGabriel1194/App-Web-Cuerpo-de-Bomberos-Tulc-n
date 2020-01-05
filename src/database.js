@@ -16,6 +16,9 @@ pool.getConnection((err, connection) => {
     if (err.code === "ECONNREFUSED") {
       console.error("DATABASE CONNECTIONS WAS REFUSED");
     }
+    if (err.code == "ER_ROW_IS_REFERENCED_2"){
+      console.log("h")
+    }
   }
 
   if (connection) connection.release();

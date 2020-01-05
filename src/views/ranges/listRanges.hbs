@@ -1,0 +1,52 @@
+<main1 id="page-top">
+    <div id="wrapper">
+        {{> sidebar}}
+        <div id="content-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
+                    <li class="breadcrumb-item">Rangos</li>
+                </ol>
+
+                {{> messaje}}
+
+                <div class="container">
+                    <a href="/ranges/add" class="btn btn-success">Nuevo Rango</a>
+                </div>
+                <div class="container p-4">
+                    <div class="row">
+                        {{#each ranges}}
+                        <div class="col-md-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <img id="imagePreview" class="figure-img img-fluid rounded"
+                                                                src="{{#if image}} /files/{{image}} {{else}} /img/man-user.png {{/if}} " width="60%" height="100"
+                                                                alt="Responsive image">
+                                    <h4 class="card-title text-upercade">
+                                        {{Rango}}
+                                    </h4>
+                                    <a href="/ranges/delete/{{idRango}}" class="btn btn-danger">Eliminar</a>
+                                    <a href="/ranges/edit/{{idRango}}" class="btn btn-secondary">Editar</a>
+                                </div>
+                            </div>
+                        </div>
+                        {{else}}
+                        <div class="col-md-4 mx-auto">
+                            <div class="card card-body text-center">
+                                <p>No Hay Rangos Guardados</p>
+                                <a href="/links/add">Crear Un Rango</a>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</main1>
