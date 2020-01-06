@@ -22,7 +22,6 @@ router.post("/add", isLoggedIn, async (req, res) => {
     image: image.name,
     Rango
   };
-  console.log(newRange);
   await Ranges.addRange(newRange, function(err, rows) {
     if (err) {
       console.log("hola", err);

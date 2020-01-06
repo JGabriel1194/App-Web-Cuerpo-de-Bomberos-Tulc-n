@@ -17,7 +17,6 @@ router.get('/add',isLoggedIn,async (req,res)=>{
     const ranges = await Ranges.listRanges(function(){
 
     });
-
     const roles = await Roles.listRoles(function(){
 
     });
@@ -26,16 +25,25 @@ router.get('/add',isLoggedIn,async (req,res)=>{
 
 router.post('/add',isLoggedIn, passport.authenticate('local.signup',{
     successRedirect: '/users',
-    failureRedirect: '/add',
+    failureRedirect: '/users',
     failureFlash: true
 }));
 
-router.get('/delete/:idPersonal',isLoggedIn,async(req,res)=>{
-    const {idPersonal} = req.params;
+router.get('/edit/:id',isLoggedIn,async(req,res)=>{
+    const {id} = req.params;
+    const user = await Users.listUserId(id,function(){}); 
+    const ranges = await Ranges.listRanges(function(){});
+    const roles = await Roles.listRoles(function(){});
+    res.render('users/editUser',{user: user[0],ranges,roles});
+});
+
+router.get('/delete/:id',isLoggedIn,async(req,res)=>{
+    const {id} = req.params;
     
-    Users.deleteUser({idPersonal},function(){
+    Users.deleteUser(id,function(){
 
     });
+    req.flash("success", "Usuario eliminado con exito");
     res.redirect('/users')
 });
 module.exports = router;

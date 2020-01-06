@@ -28,6 +28,7 @@
                 <thead>
                   <tr>
                     <th>Cédula</th>
+                    <th>Fotografía</th>
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Rango</th>
@@ -38,6 +39,7 @@
                 <tfoot>
                   <tr>
                     <th>Cédula</th>
+                    <th>Fotografía</th>
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Rango</th>
@@ -48,14 +50,24 @@
                 <tbody>
                   {{#each users}}
                   <tr>
-                    <td>{{Cedula}}</td>
-                    <td> {{Nombres}}</td>
-                    <td>{{Apellidos}} </td>
-                    <td>{{Rango}} </td>
-                    <td>{{Rol}} </td>
-                    <td>
-                      <a href="/users/edit/{{idPersonal}}" class="btn btn-primary">Editar</a>
-                      <a href="/users/delete/{{idPersonal}}" class="btn btn-danger">Eliminar</a>
+                    <td style="vertical-align:middle;">{{Cedula}}</td>
+                    <td Width="50">
+                      <img class="figure-img img-fluid rounded"
+                        src="{{#if image}} /files/profile/{{image}} {{else}} /img/man-user.png {{/if}}"
+                        alt="Responsive image">
+                    </td>
+                    <td style="vertical-align:middle;"> {{Nombres}}</td>
+                    <td style="vertical-align:middle;">{{Apellidos}} </td>
+                    <td style="vertical-align:middle;">{{Rango}} </td>
+                    <td style="vertical-align:middle;">{{Rol}} </td>
+                    <td style="vertical-align:middle;">
+                      <a href="/users/edit/{{idPersonal}}" class="btn btn-primary">
+                        <i class="fas fa-fw fa-edit"></i>
+                      </a>
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alert"
+                        data-id="/users/delete/{{idPersonal}}">
+                        <i class="fas fa-fw fa-trash-alt"></i>
+                      </button>
                     </td>
                   </tr>
                   {{/each}}

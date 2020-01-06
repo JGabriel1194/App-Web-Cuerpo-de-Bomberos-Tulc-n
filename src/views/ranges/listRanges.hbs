@@ -23,12 +23,15 @@
                             <div class="card text-center">
                                 <div class="card-body">
                                     <img id="imagePreview" class="figure-img img-fluid rounded"
-                                                                src="{{#if image}} /files/{{image}} {{else}} /img/man-user.png {{/if}} " width="60%" height="100"
-                                                                alt="Responsive image">
+                                        src="{{#if image}} /files/{{image}} {{else}} /img/man-user.png {{/if}} "
+                                        width="60%" height="100" alt="Responsive image">
                                     <h4 class="card-title text-upercade">
                                         {{Rango}}
                                     </h4>
-                                    <a href="/ranges/delete/{{idRango}}" class="btn btn-danger">Eliminar</a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#alert" data-id="/ranges/delete/{{idRango}}">
+                                        Eliminar
+                                    </button>
                                     <a href="/ranges/edit/{{idRango}}" class="btn btn-secondary">Editar</a>
                                 </div>
                             </div>

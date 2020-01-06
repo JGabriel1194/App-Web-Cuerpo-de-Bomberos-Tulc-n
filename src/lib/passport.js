@@ -31,22 +31,26 @@ passport.use('local.signup',new LocalStrategy({
     passwordField: 'Contrasenia',
     passReqToCallback: true
 },async (req,Cedula,Contrasenia,done)=>{
+    const image = req.files.image;
     const {Nombres,Apellidos,idRango,idRol} = req.body;
+
     const newUser = {
         Cedula,
         Nombres,
         Apellidos,
         idRango,
         idRol,
-        Contrasenia
+        Contrasenia,
+        image: image.name
     };
-    console.log(newUser)
+    
     newUser.Contrasenia = await helpers.encryptPassword(Contrasenia);
 
     const result = await pool.query('INSERT INTO Personal SET ?', [newUser]);
     newUser.idPersonal = result.insertId;
+    image.mv(`./src/public/files/profile/${image.name}`, err => {});
     req.flash('success','Usuario creado correctamente');
-    return done(null,newUser);
+    return done(null);
 }));
 
 passport.serializeUser((user,done)=>{
