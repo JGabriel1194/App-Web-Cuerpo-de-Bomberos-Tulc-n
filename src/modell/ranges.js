@@ -19,7 +19,6 @@ var Ranges = {
   },
   delRange: async function(id){
     const range = await pool.query("DELETE FROM Rango WHERE idRango = ?",[id])
-    console.log(id);
     return range;
   },
   upload: function(){
