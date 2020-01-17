@@ -1,0 +1,57 @@
+<main1 id="page-top">
+    <div id="wrapper">
+        {{> sidebar}}
+        <div id="content-wrapper">
+            <div class="container-fluid">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
+                    <li class="breadcrumb-item"><a href="/locations">Ubicaciones</a></li>
+                    <li class="breadcrumb-item">Editar Provincia</li>
+                </ol>
+                <div class="container">
+                    <div class="col-md-4 mx-auto">
+                        <form action="/provinces/edit/{{province.idProvincia}}" method="POST"
+                            enctype="multipart/form-data">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Editar Provincia</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <span class="col-md-12">
+                                                <span>
+                                                    <div class="form-group">
+                                                        <input type="text" name="Provincia" placeholder="Rango"
+                                                            class="form-control" value="{{province.Provincia}} "
+                                                            autofocus>
+                                                    </div>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row mx-auto float-right">
+                                        <span>
+                                            <button class="btn btn-primary">
+                                                Guardar
+                                            </button>
+                                        </span>
+                                        <span class="col-md-3">
+                                            <a href="/locations" class="btn btn-secondary">Cancelar</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</main1>

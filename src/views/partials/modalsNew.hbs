@@ -1,0 +1,58 @@
+<!-- Modal New Province-->
+<form action="/provinces/add" method="POST">
+    <div class="modal fade" id="province" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Ingrese nueva Provincia</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="Provincia" placeholder="Provincia" autofocus>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal New Camton-->
+<form action="/cantones/add" method="POST">
+    <div class="modal fade" id="canton" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Ingrese nuevo Canton</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="Provincia">Provincia: </label>
+                        <select name="idProvincia" id="" class="btn btn-light col-md-6">
+                            {{#each provinces}}
+                            <option value="{{idProvincia}}">{{Provincia}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="Canton" placeholder="Cantón" autofocus>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

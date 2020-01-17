@@ -6,7 +6,8 @@ var Provinces = {
         return provinces;
     },
     listProvinceId: async function(id){
-        return id;
+        const province = await pool.query('SELECT * FROM Provincia WHERE idProvincia = ?',[id])
+        return province;
     },
     addProvince: async function(newProvince){
         const province = await pool.query('INSERT INTO Provincia SET ?',[newProvince]);

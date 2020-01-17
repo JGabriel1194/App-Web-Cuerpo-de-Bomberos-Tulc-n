@@ -10,7 +10,7 @@
                 </ol>
 
                 {{> messaje}}
-
+                <div id="lista-usuarios"></div>
                 <!-- DataTables Example -->
                 <div class="container">
                     <div class="row">
@@ -47,12 +47,15 @@
                                                     <td style="vertical-align:middle;">{{@index}}</td>
                                                     <td style="vertical-align:middle;"> {{Provincia}}</td>
                                                     <td style="vertical-align:middle;">
-                                                        <a href="/users/edit/{{idProvincia}}" class="btn btn-primary">
+                                                        <a href="/provinces/edit/{{idProvincia}}" class="btn btn-primary">
                                                             <i class="fas fa-fw fa-edit"></i>
                                                         </a>
+                                                        {{!-- <button class="btn btn-primary" onclick="editProvince({{idProvincia}})" id="btEditarP" data-id="{{idProvincia}}">
+                                                            <i class="fas fa-fw fa-edit"></i>
+                                                        </button> --}}
                                                         <button type="button" class="btn btn-danger" data-toggle="modal"
                                                             data-target="#alert"
-                                                            data-id="/users/delete/{{idProvincia}}">
+                                                            data-id="/provinces/delete/{{idProvincia}}">
                                                             <i class="fas fa-fw fa-trash-alt"></i>
                                                         </button>
                                                     </td>
@@ -103,11 +106,70 @@
                                                     <td style="vertical-align:middle;"> {{Provincia}}</td>
                                                     <td style="vertical-align:middle;"> {{Canton}}</td>
                                                     <td style="vertical-align:middle;">
-                                                        <a href="/users/edit/{{idPersonal}}" class="btn btn-primary">
+                                                        <a href="/cantones/edit/{{idCanton}}" class="btn btn-primary">
                                                             <i class="fas fa-fw fa-edit"></i>
                                                         </a>
                                                         <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                            data-target="#alert" data-id="/users/delete/{{idPersonal}}">
+                                                            data-target="#alert" data-id="/cantones/delete/{{idCanton}}">
+                                                            <i class="fas fa-fw fa-trash-alt"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <i class="fas fa-table"></i>
+                                    Lista de Parroquias
+                                    <a class="btn btn-success float-right" data-toggle="modal" data-target="#province"
+                                        href="#">
+                                        Ingresar Parroquia
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>N°</th>
+                                                    <th>Canton</th>
+                                                    <th>Parroquia</th>
+                                                    <th>Tareas</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>N°</th>
+                                                    <th>Canton</th>
+                                                    <th>Parroquia</th>
+                                                    <th>Tareas</th>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                                {{#each parish}}
+                                                <tr>
+                                                    <td style="vertical-align:middle;">{{@index}}</td>
+                                                    <td style="vertical-align:middle;"> {{Canton}}</td>
+                                                    <td style="vertical-align:middle;"> {{Parroquia}}</td>
+                                                    <td style="vertical-align:middle;">
+                                                        <a href="/provinces/edit/{{idProvincia}}" class="btn btn-primary">
+                                                            <i class="fas fa-fw fa-edit"></i>
+                                                        </a>
+                                                        {{!-- <button class="btn btn-primary" onclick="editProvince({{idProvincia}})" id="btEditarP" data-id="{{idProvincia}}">
+                                                            <i class="fas fa-fw fa-edit"></i>
+                                                        </button> --}}
+                                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                            data-target="#alert"
+                                                            data-id="/provinces/delete/{{idProvincia}}">
                                                             <i class="fas fa-fw fa-trash-alt"></i>
                                                         </button>
                                                     </td>
@@ -128,61 +190,4 @@
         <!-- /.content-wrapper -->
     </div>
 </main1>
-<!-- Modal New Province-->
-<form action="/provinces/add" method="POST">
-    <div class="modal fade" id="province" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title">Ingrese nueva Provincia</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="Provincia" placeholder="Provincia" autofocus>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-primary">
-                        Guardar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-
-<!-- Modal New Camton-->
-<form action="/cantones/add" method="POST">
-    <div class="modal fade" id="canton" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title">Ingrese nuevo Canton</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="Provincia">Provincia: </label>
-                        <select name="idProvincia" id="" class="btn btn-light col-md-6">
-                            {{#each provinces}}
-                            <option value="{{idProvincia}}">{{Provincia}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="Canton" placeholder="Cantón" autofocus>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-primary">
-                        Guardar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
+{{>modalsNew}}

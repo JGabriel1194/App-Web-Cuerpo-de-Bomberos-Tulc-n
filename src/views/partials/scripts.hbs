@@ -1,3 +1,4 @@
+<!--Funcion para vista previa de la imagen subida -->
 <script type="text/javascript">
     (function () {
         function filePreview(input) {
@@ -17,11 +18,35 @@
         });
     })();
 </script>
+<!--Function for to show a alert with modal window  -->
 <script>
-$(document).ready(function (e) {
-  $('#alert').on('show.bs.modal', function(e) {    
-     var id = $(e.relatedTarget).data().id;
-      $(e.currentTarget).find('#url').attr('href',(id));
-  });
-});
+    $(document).ready(function (e) {
+        $('#alert').on('show.bs.modal', function (e) {
+            var id = $(e.relatedTarget).data().id;
+            $(e.currentTarget).find('#url').attr('href', (id));
+        });
+    });
+</script>
+
+
+<script>
+    function editProvince(id) {
+        var edit = '/provinces/edit/'+id;
+
+        $.ajax({
+            //url: '/province/edit/'+id,
+            url: edit,
+            dataType : 'html',
+            type : 'GET',
+            
+            success: function (data) {
+                document.write(data.province.idProvincia);
+            },
+            error: function () {
+                document.write(edit);
+            }
+        });
+
+        
+    }
 </script>

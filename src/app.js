@@ -54,7 +54,7 @@ app.use(require('./routes/autentication'));
 app.use('/links',require('./routes/links'));
 app.use('/users',require('./routes/users'));
 app.use('/ranges',require('./routes/ranges'));
-app.use('/locations',require('./routes/provinces'));
+app.use('/address',require('./routes/provinces'));
 app.use('/provinces',require('./routes/provinces'));
 app.use('/cantones',require('./routes/cantones'));
 

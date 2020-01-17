@@ -5,8 +5,15 @@ const { isLoggedIn } = require("../lib/auth");
 
 //Route for list all ranges
 router.get("/", isLoggedIn, async (req, res) => {
-  const ranges = await Ranges.listRanges(function(err, rows) {});
-  res.render("ranges/listRanges", { ranges });
+  await Ranges.listRanges(function(err, ranges) {
+    if (err) {
+      console.log(err);
+      res.render("ranges/listRanges");
+    } else {
+      req.flash("success", "Error al cargar los datos");
+      res.render("ranges/listRanges", { ranges });
+    }
+  });
 });
 
 //Route for to show the view "newRange"
@@ -24,14 +31,15 @@ router.post("/add", isLoggedIn, async (req, res) => {
   };
   await Ranges.addRange(newRange, function(err, rows) {
     if (err) {
-      console.log("hola", err);
+      req.flash("message", "Error al crear Rango");
+      console.log("Hola----", err);
+      res.redirect("/ranges");
     } else {
-      res.json(rows);
+      image.mv(`./src/public/files/${image.name}`, err => {});
+      req.flash("success", "Rango creado con exito");
+      res.redirect("/ranges");
     }
   });
-  image.mv(`./src/public/files/${image.name}`, err => {});
-  req.flash("success", "Rango creado con exito");
-  res.redirect("/ranges");
 });
 
 //Route for to show the view to update a range selected
@@ -59,9 +67,15 @@ router.post("/edit/:id", isLoggedIn, async (req, res) => {
 //Route for delete a range selected by its id
 router.get("/delete/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
-  await Ranges.delRange(id, function() {});
-  req.flash("success", "Rango eliminado con exito");
-  res.redirect("/ranges");
+  await Ranges.delRange(id, function(err, rows) {
+    if (err) {
+      req.flash("message", "No se puede eliminar");
+      res.redirect("/ranges");
+    } else {
+      req.flash("success", "Rango eliminado con exito");
+      res.redirect("/ranges");
+    }
+  });
 });
 
 module.exports = router;

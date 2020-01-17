@@ -1,24 +1,24 @@
 const pool = require("../database");
 
 var Ranges = {
-  listRanges: async function() {
-    const range = await pool.query("SELECT * FROM Rango");
+  listRanges: async function(callback) {
+    const range = await pool.query("SELECT * FROM Rango",callback);
     return range;
   },
-  listRangeId: async function(id){
-    const range = await pool.query("SELECT * FROM Rango WHERE idRango = ?",[id]);
+  listRangeId: async function(id,callback){
+    const range = await pool.query("SELECT * FROM Rango WHERE idRango = ?",[id],callback);
     return range;
   },
-  addRange: async function(newRange){
-    const range = await pool.query('INSERT INTO Rango SET ?',[newRange]);
+  addRange: async function(newRange,callback){
+    const range = await pool.query('INSERT INTO Rango SET ?',[newRange],callback);
     return range;
   },
-  editRange: async function(id,newRange){
-    const range = await pool.query("UPDATE Rango SET ? WHERE idRango = ?",[newRange,id])
+  editRange: async function(id,newRange,callback){
+    const range = await pool.query("UPDATE Rango SET ? WHERE idRango = ?",[newRange,id],callback)
     return range;
   },
-  delRange: async function(id){
-    const range = await pool.query("DELETE FROM Rango WHERE idRango = ?",[id])
+  delRange: async function(id,callbak){
+    const range = await pool.query("DELETE FROM Rango WHERE idRango = ?",[id],callbak);
     return range;
   },
   upload: function(){
