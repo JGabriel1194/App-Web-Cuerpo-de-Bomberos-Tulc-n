@@ -7,10 +7,25 @@ const Parish = require('../modell/parish');
 
 //Router for to show all data
 router.get('/',isLoggedIn,async(req,res)=>{
-    const provinces = await Provinces.listProvinces(function(){});
-    const cantones = await Cantones.listCnatones(function(){});
-    const parish = await Parish.listParish(function(){});
-    res.render('adderss/listLocations',{provinces,cantones,parish});
+    await Provinces.listProvinces(function(err,provinces){
+        if(err){
+            console.log(err);
+        }else{
+            Cantones.listCnatones(function(err,cantones){
+                if(err){
+                    console.log(err);
+                }else{
+                    Parish.listParish(function(err,parish){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            res.render('address/listLocations',{provinces,cantones,parish});
+                        }
+                    });
+                }
+            });
+        }
+    });
 });
 
 //Router for to show the view newData
@@ -25,16 +40,26 @@ router.post('/add',isLoggedIn,async(req,res)=>{
         Parroquia,
         idCanton
     } 
-    await Parish.addParish(newParish,function(){});
-    req.flash('success','Parroquia creada con éxito');
-    res.redirect('/parish');
+    await Parish.addParish(newParish,function(err,rows){
+        if(err){
+            console.log(err);
+        }else{
+            req.flash('success','Parroquia creada con éxito');
+            res.redirect('/parish');
+        }
+    });
 });
 
 //Router for to show the view to update a data selected
 router.get('/edit/:id',isLoggedIn,async(req,res)=>{
     const {id} = req.params;
-    const parish = await Parish.listParishId(id,function(){});
-    res.render('parish/editParish',{parish: parish[0]});
+    await Parish.listParishId(id,function(err,parish){
+        if(err){
+            console.log(err);
+        }else{
+            res.render('parish/editParish',{parish: parish[0]});
+        }
+    });
 });
 
 //Router for update a data selected by its id

@@ -7,10 +7,25 @@ const {isLoggedIn} = require('../lib/auth');
 
 //Route for list all cantones
 router.get('/',isLoggedIn,async(req,res)=>{
-    const provinces = await Provinces.listProvinces(function(){});
-    const cantones = await Cantones.listCnatones(function(){});
-    const parish = await Parish.listParish(function(){});
-    res.render('address/listLocations',{provinces,cantones,parish});
+    await Provinces.listProvinces(function(err,provinces){
+        if(err){
+            console.log(err);
+        }else{
+            Cantones.listCnatones(function(err,cantones){
+                if(err){
+                    console.log(err);
+                }else{
+                    Parish.listParish(function(err,parish){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            res.render('address/listLocations',{provinces,cantones,parish});
+                        }
+                    });
+                }
+            });
+        }
+    });
 });
 
 //Router for to show the view newCanton
@@ -28,17 +43,32 @@ router.post('/add',isLoggedIn,async(req,res)=>{
         idProvincia
     };
     console.log(newCanton);
-    await Cantones.addCanton(newCanton,function(){});
-    req.flash('success','Canton creado con exito');
-    res.redirect('/cantones');
+    await Cantones.addCanton(newCanton,function(err,rows){
+        if(err){
+            console.log(err);
+        }else{
+            req.flash('success','Canton creado con exito');
+            res.redirect('/cantones');
+        }
+    });
 });
 
 //Router for to show the view to update a canton selected
 router.get('/edit/:id',isLoggedIn,async(req,res)=>{
     const {id} = req.params;
-    const canton = await Cantones.listCantonId(id,function(){});
-    const province = await Provinces.listProvinces(function(){});
-    res.render('cantones/editCanton',{canton: canton[0],province});
+    await Cantones.listCantonId(id,function(err,canton){
+        if(err){
+            console.log(err);
+        }else{
+            Provinces.listProvinces(function(err,province){
+                if(err){
+                    console.log(err);
+                }else{
+                    res.render('cantones/editCanton',{canton: canton[0],province});
+                }
+            });
+        }
+    });
 });
 
 //Router for to edit a canton selected by its id
@@ -57,8 +87,14 @@ router.post('/edit/:id',isLoggedIn,async(req,res)=>{
 //Router for to dellete a canton selected by its id
 router.get('/delete/:id',isLoggedIn,async(req,res)=>{
     const {id} = req.params;
-    await Cantones.delCanton(id,function(){});
-    req.flash('success','Cantón eliminado con exito');
-    res.redirect('/cantones');
+    await Cantones.delCanton(id,function(err,rows){
+        if(err){
+            req.flash('message','Registro usado en otra tabla. No se puede eliminar');
+            res.redirect('/cantones');
+        }else{
+            req.flash('success','Cantón eliminado con exito');
+            res.redirect('/cantones');
+        }
+    });
 })
 module.exports = router;

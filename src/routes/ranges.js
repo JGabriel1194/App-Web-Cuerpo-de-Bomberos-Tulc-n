@@ -32,7 +32,6 @@ router.post("/add", isLoggedIn, async (req, res) => {
   await Ranges.addRange(newRange, function(err, rows) {
     if (err) {
       req.flash("message", "Error al crear Rango");
-      console.log("Hola----", err);
       res.redirect("/ranges");
     } else {
       image.mv(`./src/public/files/${image.name}`, err => {});
@@ -45,8 +44,13 @@ router.post("/add", isLoggedIn, async (req, res) => {
 //Route for to show the view to update a range selected
 router.get("/edit/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
-  const range = await Ranges.listRangeId(id, function() {});
-  res.render("ranges/editRange", { range: range[0] });
+  await Ranges.listRangeId(id, function(err,range) {
+    if(err){
+      console.log(err);
+    }else{
+      res.render("ranges/editRange", { range: range[0] });
+    }
+  });
 });
 
 //Route for edit a range selected by its id
@@ -58,10 +62,16 @@ router.post("/edit/:id", isLoggedIn, async (req, res) => {
     Rango,
     image: image.name
   };
-  await Ranges.editRange(id, newRange, function() {});
-  image.mv(`./src/public/files/${image.name}`, err => {});
-  req.flash("success", "Rango actualizado con éxito");
-  res.redirect("/ranges");
+  await Ranges.editRange(id, newRange, function(err,rows) {
+    if(err){
+      req.flash("success", "Debe ingresar una imagen de insignia");
+      res.redirect("/ranges");
+    }else{
+      image.mv(`./src/public/files/${image.name}`, err => {});
+      req.flash("success", "Rango actualizado con éxito");
+      res.redirect("/ranges");
+    }
+  });
 });
 
 //Route for delete a range selected by its id

@@ -1,24 +1,24 @@
 const pool = require('../database');
 
 var Provinces = {
-    listProvinces: async function(){
-        const provinces = await pool.query('SELECT * FROM Provincia');
+    listProvinces: async function(callback){
+        const provinces = await pool.query('SELECT * FROM Provincia',callback);
         return provinces;
     },
-    listProvinceId: async function(id){
-        const province = await pool.query('SELECT * FROM Provincia WHERE idProvincia = ?',[id])
+    listProvinceId: async function(id,callback){
+        const province = await pool.query('SELECT * FROM Provincia WHERE idProvincia = ?',[id],callback);
         return province;
     },
-    addProvince: async function(newProvince){
-        const province = await pool.query('INSERT INTO Provincia SET ?',[newProvince]);
+    addProvince: async function(newProvince,callback){
+        const province = await pool.query('INSERT INTO Provincia SET ?',[newProvince],callback);
         return province;
     },
-    editProvince: async function(id,newProvince){
-        const province = await pool.query('UPDATE Provincia SET ? WHERE idProvincia = ?',[newProvince,id]);
+    editProvince: async function(id,newProvince,callback){
+        const province = await pool.query('UPDATE Provincia SET ? WHERE idProvincia = ?',[newProvince,id],callback);
         return province;
     },
-    delProvince: async function(id){
-        const province = await pool.query('DELETE FROM Provincia WHERE idProvincia = ?',[id])
+    delProvince: async function(id,callback){
+        const province = await pool.query('DELETE FROM Provincia WHERE idProvincia = ?',[id],callback);
     }
 };
 

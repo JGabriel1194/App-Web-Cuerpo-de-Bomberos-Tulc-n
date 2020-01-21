@@ -9,6 +9,6 @@ module.exports = {
         if(!req.isAuthenticated()){
             return next();
         }
-        return res.redirect('/users');
+        return res.redirect('/dashboard');
     }
 };

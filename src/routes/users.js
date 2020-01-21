@@ -14,13 +14,21 @@ router.get ('/',isLoggedIn,async(req,res)=>{
 });
 
 router.get('/add',isLoggedIn,async (req,res)=>{
-    const ranges = await Ranges.listRanges(function(){
-
+    await Ranges.listRanges(function(err,ranges){
+        if(err){
+            req.flash('message','Error al cargar Rangos');
+            res.redirect('/users');
+        }else{
+            Roles.listRoles(function(err,roles){
+                if(err){
+                    req.flash('message','Error al cargar Roles');
+                    res.redirect('/users');
+                }else{
+                    res.render('users/newUser',{ranges,roles});
+                }
+            });
+        }
     });
-    const roles = await Roles.listRoles(function(){
-
-    });
-    res.render('users/newUser',{ranges,roles});
 });
 
 router.post('/add',isLoggedIn, passport.authenticate('local.signup',{
@@ -31,19 +39,39 @@ router.post('/add',isLoggedIn, passport.authenticate('local.signup',{
 
 router.get('/edit/:id',isLoggedIn,async(req,res)=>{
     const {id} = req.params;
-    const user = await Users.listUserId(id,function(){}); 
-    const ranges = await Ranges.listRanges(function(){});
-    const roles = await Roles.listRoles(function(){});
-    res.render('users/editUser',{user: user[0],ranges,roles});
+    await Users.listUserId(id,function(err,user){
+        if(err){
+
+        }else{
+            Ranges.listRanges(function(err,ranges){
+                if(err){
+
+                }else{
+                    Roles.listRoles(function(err,roles){
+                        if(err){
+
+                        }else{
+                            res.render('users/editUser',{user: user[0],ranges,roles});
+                        }
+                    });
+                }
+            });
+        }
+    }); 
+    
 });
 
 router.get('/delete/:id',isLoggedIn,async(req,res)=>{
     const {id} = req.params;
     
-    Users.deleteUser(id,function(){
-
+    Users.deleteUser(id,function(err,rows){
+        if(err){
+            console.log(err);
+        }else{
+            req.flash("success", "Usuario eliminado con exito");
+            res.redirect('/users')
+        }
     });
-    req.flash("success", "Usuario eliminado con exito");
-    res.redirect('/users')
+    
 });
 module.exports = router;
