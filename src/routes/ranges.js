@@ -10,7 +10,6 @@ router.get("/", isLoggedIn, async (req, res) => {
       console.log(err);
       res.render("ranges/listRanges");
     } else {
-      req.flash("success", "Error al cargar los datos");
       res.render("ranges/listRanges", { ranges });
     }
   });
@@ -48,7 +47,7 @@ router.get("/edit/:id", isLoggedIn, async (req, res) => {
     if(err){
       console.log(err);
     }else{
-      res.render("ranges/editRange", { range: range[0] });
+      res.render("ranges/editRange", { range: range[0]});
     }
   });
 });
@@ -64,7 +63,7 @@ router.post("/edit/:id", isLoggedIn, async (req, res) => {
   };
   await Ranges.editRange(id, newRange, function(err,rows) {
     if(err){
-      req.flash("success", "Debe ingresar una imagen de insignia");
+      req.flash("message", "Debe ingresar una imagen de insignia");
       res.redirect("/ranges");
     }else{
       image.mv(`./src/public/files/${image.name}`, err => {});

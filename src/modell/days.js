@@ -14,11 +14,11 @@ var Days = {
         return day;
     },
     editDay: async function(id,newDay,callback){
-        const day = await pool.query('UPDATE CDia SET ? WHERE idCDia = ?'[newDay,id],callback);
+        const day = await pool.query('UPDATE CDia SET ? WHERE idCDia = ?',[newDay,id],callback);
         return day;
     },
-    deleteDay: async function(id){
-        const day = await pool.query('DLETE FROM CDia WHERE idCDia = ?',[id],callback);
+    deleteDay: async function(id,callback){
+        const day = await pool.query('DELETE FROM CDia WHERE idCDia = ?',[id],callback);
         return day;
     }
 }

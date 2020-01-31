@@ -1,0 +1,125 @@
+<main1 id="page-top">
+    <div id="wrapper">
+        {{> sidebar}}
+        <div id="content-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
+                    <li class="breadcrumb-item">Causas de Incendio</li>
+                </ol>
+
+                {{> messaje}}
+
+                <!-- DataTables Example -->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-table"></i>
+                        Causas de Incendio
+                        <a class="btn btn-success float-right" data-toggle="modal" data-target="#cause" href="#">
+                            Nueva Causa
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Causa</th>
+                                        <th>Tareas</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Causa</th>
+                                        <th>Tareas</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    {{#each cause}}
+                                    <tr>
+                                        <td style="vertical-align:middle;">{{math @index "+" 1}}</td>
+                                        <td style="vertical-align:middle;"> {{Causa}}</td>
+                                        <td style="vertical-align:middle;">
+                                            {{!-- <button class="btn btn-primary" onclick="editProvince({{idCausa}})"
+                                                id="btEditarP" data-toggle="modal" data-target="#edit">
+                                                <i class="fas fa-fw fa-edit"></i>
+                                            </button> --}}
+                                            <a href="/cause/edit/{{idCausa}}" class="btn btn-primary">
+                                                <i class="fas fa-fw fa-edit"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#alert" data-id="/cause/delete/{{idCausa}}">
+                                                <i class="fas fa-fw fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</main1>
+<!-- Modal New Cause-->
+<form action="/cause/add" method="POST">
+    <div class="modal fade" id="cause" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Ingrese Nueva Causa de Incendio</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="Causa" placeholder="Causa de Incendio" autofocus>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal Edit Cause-->
+<form action="/cause/add" method="POST">
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Ingrese Nueva Causa de Incendio</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="lista-usuarios"></div>
+                    <div class="form-group">
+                        <input class="form-control" value="{{cause.Causa}}" type="text" name="Causa" placeholder="Causa de Incendio" autofocus>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

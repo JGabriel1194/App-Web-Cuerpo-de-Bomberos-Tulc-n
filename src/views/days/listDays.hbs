@@ -1,0 +1,95 @@
+<main1 id="page-top">
+    <div id="wrapper">
+        {{> sidebar}}
+        <div id="content-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
+                    <li class="breadcrumb-item">Tipo de Día</li>
+                </ol>
+
+                {{> messaje}}
+
+                <!-- DataTables Example -->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-table"></i>
+                        Tipo de Día
+                        <a class="btn btn-success float-right" data-toggle="modal" data-target="#new" href="#">
+                            Nuevo Día
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Tipo de Día</th>
+                                        <th>Tareas</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Tipo de Día</th>
+                                        <th>Tareas</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    {{#each days}}
+                                    <tr>
+                                        <td style="vertical-align:middle;">{{math @index "+" 1}}</td>
+                                        <td style="vertical-align:middle;"> {{CDia}}</td>
+                                        <td style="vertical-align:middle;">
+                                            <a href="/days/edit/{{idCDia}}" class="btn btn-primary">
+                                                <i class="fas fa-fw fa-edit"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#alert" data-id="/days/delete/{{idCDia}}">
+                                                <i class="fas fa-fw fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</main1>
+<!-- Modal New -->
+<form action="/days/add" method="POST">
+    <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Ingrese Nuevo Tipo de Día</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="CDia" placeholder="Tipo de Día" autofocus>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

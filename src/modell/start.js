@@ -17,7 +17,7 @@ var Start = {
         const start = pool.query('UPDATE LInicio SET ? WHERE idLInicio = ?',[newStart,id],callback);
         return start;
     },
-    deleteStart: async function(id){
+    deleteStart: async function(id,callback){
         const start = pool.query('DELETE FROM LInicio WHERE idLInicio = ?',[id],callback);
         return start;
     }

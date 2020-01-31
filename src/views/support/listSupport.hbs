@@ -1,0 +1,75 @@
+<main1 id="page-top">
+    <div id="wrapper">
+        {{> sidebar}}
+        <div id="content-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
+                    <li class="breadcrumb-item">Apoyo Adicional</li>
+                </ol>
+
+                {{> messaje}}
+
+                <!-- DataTables Example -->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <i class="fas fa-table"></i>
+                        Lista de Apoyo Adicional
+                        <a class="btn btn-success float-right" href="/users/add">
+                            Nuevo Apoyo
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Codigo</th>
+                                        <th>Apoyo Adicional</th>
+                                        <th>Tareas</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Codigo</th>
+                                        <th>Apoyo Adicional</th>
+                                        <th>Tareas</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    {{#each users}}
+                                    <tr>
+                                        <td style="vertical-align:middle;">{{idApoyoA}}</td>
+
+                                        <td style="vertical-align:middle;"> {{idParte}}</td>
+                                        <td style="vertical-align:middle;">{{ApoyoA}} </td>
+                                        <td style="vertical-align:middle;">
+                                            <a href="/users/edit/{{idPersonal}}" class="btn btn-primary">
+                                                <i class="fas fa-fw fa-edit"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#alert" data-id="/users/delete/{{idPersonal}}">
+                                                <i class="fas fa-fw fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</main1>

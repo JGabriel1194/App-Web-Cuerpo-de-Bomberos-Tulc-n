@@ -20,11 +20,7 @@ var Ranges = {
   delRange: async function(id,callbak){
     const range = await pool.query("DELETE FROM Rango WHERE idRango = ?",[id],callbak);
     return range;
-  },
-  upload: function(){
-    
   }
-
 };
 
 module.exports = Ranges;

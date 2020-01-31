@@ -1,6 +1,6 @@
 const pool = require('../database');
 
-var Emergencies ={
+var Emergency ={
     listEmergency: async function(callback){
         const emergency = await pool.query('SELECT * FROM TEmergencia',callback);
         return emergency;

@@ -21,8 +21,20 @@ app.engine('.hbs',exphbs({
     layoutsDir: path.join(app.get('views'),'layouts'),
     partialsDir: path.join(app.get('views'),'partials'),
     extname: '.hbs',
-    helpers: require('./lib/handlebars')
-}));
+    helpers: require('./lib/handlebars'),
+    helpers:{
+        // Function to do basic mathematical operation in handlebar
+        math: function(lvalue, operator, rvalue) {lvalue = parseFloat(lvalue);
+            rvalue = parseFloat(rvalue);
+            return {
+                "+": lvalue + rvalue,
+                "-": lvalue - rvalue,
+                "*": lvalue * rvalue,
+                "/": lvalue / rvalue,
+                "%": lvalue % rvalue
+            }[operator];
+        }
+}}));
 app.set('view engine','.hbs');
 
 //Midlewars
@@ -57,6 +69,15 @@ app.use('/ranges',require('./routes/ranges'));
 app.use('/address',require('./routes/provinces'));
 app.use('/provinces',require('./routes/provinces'));
 app.use('/cantones',require('./routes/cantones'));
+app.use('/support',require('./routes/support'));
+app.use('/cause',require('./routes/cause'));
+app.use('/days',require('./routes/days'));
+app.use('/death',require('./routes/death'));
+app.use('/notice',require('./routes/notice'));
+app.use('/start',require('./routes/start'));
+app.use('/roles',require('./routes/roles'));
+app.use('/emergency',require('./routes/emergency'));
+
 
 //Public
 app.use(express.static(path.join(__dirname,'public')));

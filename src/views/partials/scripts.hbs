@@ -31,7 +31,7 @@
 
 <script>
     function editProvince(id) {
-        var edit = '/provinces/edit/'+id;
+        var edit = '/cause/edit/'+id;
 
         $.ajax({
             //url: '/province/edit/'+id,
@@ -40,7 +40,11 @@
             type : 'GET',
             
             success: function (data) {
-                document.write(data.province.idProvincia);
+                //document.write(data);
+                var text = data;
+                var obj = JSON.parse(text);
+                console.log('obj');
+                $('#lista-usuarios').html(data);
             },
             error: function () {
                 document.write(edit);

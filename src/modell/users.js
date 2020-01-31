@@ -14,8 +14,8 @@ var Users = {
     )
     return user;
   },
-  deleteUser: async function(id){
-    const user = await pool.query("DELETE FROM Personal WHERE idPersonal = ?",[id]);
+  deleteUser: async function(id,callback){
+    const user = await pool.query("DELETE FROM Personal WHERE idPersonal = ?",[id],callback);
     return user;
   }
 };

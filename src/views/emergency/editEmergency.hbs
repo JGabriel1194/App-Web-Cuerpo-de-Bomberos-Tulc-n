@@ -6,16 +6,16 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
-                    <li class="breadcrumb-item"><a href="/address">Ubicaciones</a></li>
-                    <li class="breadcrumb-item">Editar Provincia</li>
+                    <li class="breadcrumb-item"><a href="/days">Tipo de Emergéncia</a></li>
+                    <li class="breadcrumb-item">Editar Emergéncia</li>
                 </ol>
                 <div class="container">
                     <div class="col-md-4 mx-auto">
-                        <form action="/provinces/edit/{{province.idProvincia}}" method="POST"
+                        <form action="/emergency/edit/{{emergency.idTEmergencia}}" method="POST"
                             enctype="multipart/form-data">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Editar Provincia</h4>
+                                    <h4>Editar Tipo de Día</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="container">
@@ -23,8 +23,8 @@
                                             <span class="col-md-12">
                                                 <span>
                                                     <div class="form-group">
-                                                        <input type="text" name="Provincia" placeholder="Rango"
-                                                            class="form-control" value="{{province.Provincia}} "
+                                                        <input type="text" name="TEmergencia" placeholder="Emergencia"
+                                                            class="form-control" value="{{emergency.TEmergencia}} "
                                                             autofocus>
                                                     </div>
                                                 </span>
@@ -40,7 +40,7 @@
                                             </button>
                                         </span>
                                         <span class="col-md-3">
-                                            <a href="/address" class="btn btn-secondary">Cancelar</a>
+                                            <a href="/emergency" class="btn btn-secondary">Cancelar</a>
                                         </span>
                                     </div>
                                 </div>
