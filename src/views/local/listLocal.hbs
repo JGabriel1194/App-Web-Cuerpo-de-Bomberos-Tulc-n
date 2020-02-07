@@ -8,7 +8,7 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
-                    <li class="breadcrumb-item">Lesiones</li>
+                    <li class="breadcrumb-item">Tipo de Local</li>
                 </ol>
 
                 {{> messaje}}
@@ -17,7 +17,7 @@
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-table"></i>
-                        Roles
+                        Tipo de Local
                         <a class="btn btn-success float-right" data-toggle="modal" data-target="#new" href="#">
                             Nuevo
                         </a>
@@ -28,28 +28,28 @@
                                 <thead>
                                     <tr>
                                         <th>N°</th>
-                                        <th>Lesiones</th>
+                                        <th>Tipo de Local</th>
                                         <th>Tareas</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>N°</th>
-                                        <th>Lesiones</th>
+                                        <th>Tipo de Local</th>
                                         <th>Tareas</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    {{#each injury}}
+                                    {{#each local}}
                                     <tr>
                                         <td style="vertical-align:middle;">{{math @index "+" 1}}</td>
-                                        <td style="vertical-align:middle;"> {{TLesion}}</td>
+                                        <td style="vertical-align:middle;"> {{TLocal}}</td>
                                         <td style="vertical-align:middle;">
-                                            <a href="/injury/edit/{{idTLesion}}" class="btn btn-primary">
+                                            <a href="/local/edit/{{idTLocal}}" class="btn btn-primary">
                                                 <i class="fas fa-fw fa-edit"></i>
                                             </a>
                                             <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#alert" data-id="/injury/delete/{{idTLesion}}">
+                                                data-target="#alert" data-id="/local/delete/{{idTLocal}}">
                                                 <i class="fas fa-fw fa-trash-alt"></i>
                                             </button>
                                         </td>
@@ -70,17 +70,17 @@
     </div>
 </main1>
 <!-- Modal New -->
-<form action="/injury/add" method="POST">
+<form action="/local/add" method="POST">
     <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title">Ingrese Nueva Lesión</h4>
+                    <h3 class="modal-title">Ingrese Nuevo Tipo de Local</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input class="form-control" type="text" name="TLesion" placeholder="Lesión" autofocus>
+                        <input class="form-control" type="text" name="TLocal" placeholder="Tipo de Local" autofocus>
                     </div>
                 </div>
                 <div class="modal-footer">

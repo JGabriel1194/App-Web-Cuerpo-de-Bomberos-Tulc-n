@@ -69,7 +69,19 @@ router.post('/edit/:id',isLoggedIn,async(req,res)=>{
 
 //Router for delete a data selected by its id
 router.get('/delete/:id',isLoggedIn,async(req,res)=>{
-
+    res.send('Hola');
 });
+
+router.get('/list/:id',isLoggedIn,async(req,res)=>{
+    const {id} = req.params;
+    await Parish.listPariId(id,function(err,parish){
+        if(err){
+
+        }else{
+            res.json(parish);
+        }
+    });
+});
+
 
 module.exports = router;

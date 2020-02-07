@@ -36,14 +36,19 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="Provincia">Provincia: </label>
-                        <select name="idProvincia" id="" class="btn btn-light col-md-6">
+                        <select name="idProvincia" id="Provincia" class="btn btn-light col-md-6">
                             {{#each provinces}}
                             <option value="{{idProvincia}}">{{Provincia}}</option>
                             {{/each}}
                         </select>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="Canton" placeholder="Cantón" autofocus>
+                        <label for="Provincia">Provincia: </label>
+                        <select name="idProvincia" id="Canton" class="btn btn-light col-md-6">
+                            {{#each provinces}}
+                            <option value="{{idProvincia}}">{{Provincia}}</option>
+                            {{/each}}
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

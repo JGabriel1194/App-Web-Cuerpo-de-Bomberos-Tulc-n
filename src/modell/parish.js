@@ -6,7 +6,7 @@ var Parish = {
         return Parish;
     },
     listParishId: async function(id,callbak){
-        const Parish = await pool.query('SELECT * FROM Parroquia Where idParroquia ?', [id],callbak);
+        const Parish = await pool.query('SELECT * FROM Parroquia Where idParroquia = ?', [id],callbak);
         return Parish;
     },
     addParish: async function(newParish,callbak){
@@ -19,6 +19,10 @@ var Parish = {
     },
     delParish: async function(id,callbak){
         const Parish = await pool.query('DELETE FROM Parroquia WHERE idParroquia = ?',[id],callbak);
+        return Parish;
+    },
+    listPariId: async function(id,callbak){
+        const Parish = await pool.query('SELECT * FROM Parroquia Where idCanton = ?', [id],callbak);
         return Parish;
     }
 }

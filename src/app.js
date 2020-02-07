@@ -69,6 +69,7 @@ app.use('/ranges',require('./routes/ranges'));
 app.use('/address',require('./routes/provinces'));
 app.use('/provinces',require('./routes/provinces'));
 app.use('/cantones',require('./routes/cantones'));
+app.use('/parish',require('./routes/parish'));
 app.use('/support',require('./routes/support'));
 app.use('/cause',require('./routes/cause'));
 app.use('/days',require('./routes/days'));
@@ -77,7 +78,10 @@ app.use('/notice',require('./routes/notice'));
 app.use('/start',require('./routes/start'));
 app.use('/roles',require('./routes/roles'));
 app.use('/emergency',require('./routes/emergency'));
-
+app.use('/injury',require('./routes/injury'));
+app.use('/local',require('./routes/local'));
+app.use('/vehicle',require('./routes/vehicle'));
+app.use('/parte',require('./routes/parte'));
 
 //Public
 app.use(express.static(path.join(__dirname,'public')));

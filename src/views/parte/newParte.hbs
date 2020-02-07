@@ -1,0 +1,864 @@
+<main1 id="page-top">
+    <div id="wrapper">
+        {{> sidebar}}
+        <div id="content-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
+                    <li class="breadcrumb-item"><a href="/parte">Partes</a></li>
+                    <li class="breadcrumb-item">Nuevo Parte</li>
+                </ol>
+
+                {{> messaje}}
+
+                <!-- Formulario de parte -->
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab"
+                            aria-controls="general" aria-selected="true">Datos G.</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="atendido-tab" data-toggle="tab" href="#atendido" role="tab"
+                            aria-controls="atendido" aria-selected="false">Atendido Por</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="aviso-tab" data-toggle="tab" href="#aviso" role="tab"
+                            aria-controls="aviso" aria-selected="false">F. Aviso</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="localizacion-tab" data-toggle="tab" href="#localizacion" role="tab"
+                            aria-controls="localizacion" aria-selected="false">Localización</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="local-tab" data-toggle="tab" href="#local" role="tab"
+                            aria-controls="local" aria-selected="false">T. Local</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="afectado-tab" data-toggle="tab" href="#afectado" role="tab"
+                            aria-controls="afectado" aria-selected="false">Afectado</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="causa-tab" data-toggle="tab" href="#causa" role="tab"
+                            aria-controls="causa" aria-selected="false">C. Incendio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="daños-tab" data-toggle="tab" href="#daños" role="tab"
+                            aria-controls="daños" aria-selected="false">Daños</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="inicio-tab" data-toggle="tab" href="#inicio" role="tab"
+                            aria-controls="inicio" aria-selected="false">L. Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="descripcion-tab" data-toggle="tab" href="#descripcion" role="tab"
+                            aria-controls="descripcion" aria-selected="false">Descripción</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="croquis-tab" data-toggle="tab" href="#croquis" role="tab"
+                            aria-controls="croquis" aria-selected="false">Croquis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="novedades-tab" data-toggle="tab" href="#novedades" role="tab"
+                            aria-controls="novedades" aria-selected="false">Novedades</a>
+                    </li>
+                </ul>
+                <form action="/parte/add" method="POST" enctype="multipart/form-data">
+                    <div class="tab-content" id="myTabContent">
+                        <!--Datos Generales -->
+                        <div class="tab-pane fade show active" id="general" role="tabpanel"
+                            aria-labelledby="general-tab">
+                            <div class="border container">
+                                <div class="row p-2">
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Fecha</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div id="fecha1" class="col-xs-3 input-group">
+                                                    <input data-format="yyyy-MM-dd" type="text" class="form-control"
+                                                        id="datepicker" name="Fecha" autocomplete="off"
+                                                        placeholder="Seleccione una fecha">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Tipo Emergencia</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    {{#each emergency}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="idTEmergencia" id="option1"
+                                                            value="{{idTEmergencia}}">
+                                                        {{TEmergencia}}
+                                                    </label>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Clase de Día</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    {{#each days}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="idCDia" id="option1"
+                                                            value="{{idCDia}}">
+                                                        {{CDia}}
+                                                    </label>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Atendido por -->
+                        <div class="tab-pane fade" id="atendido" role="tabpanel" aria-labelledby="atendido-tab">
+                            <div class="border container">
+                                <div class="row p-2">
+                                    <div class="col-md-8">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Compañia</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    {{#each emergency}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="idUnidad" id="option1"
+                                                            value="{{idTEmergencia}}">
+                                                        {{TEmergencia}}
+                                                    </label>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Apoyo Requerido</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="Apoyo" id="option1" value="Si">
+                                                        Si
+                                                    </label>
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="Apoyo" id="option1" value="No">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <i class="fas fa-table"></i>
+                                                Personal que Concurrió
+                                                <a class="btn btn-success float-right" data-toggle="modal"
+                                                    data-target="#new" href="#">
+                                                    Nuevo
+                                                </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <table class="table table-bordered" id="dataTable" width="100%"
+                                                    cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>N°</th>
+                                                            <th>Personal</th>
+                                                            <th>Tarea</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>N°</th>
+                                                            <th>Personal</th>
+                                                            <th>Tarea</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                    <tbody>
+                                                        {{#each days}}
+                                                        <tr>
+                                                            <td style="vertical-align:middle;">{{math @index "+" 1}}
+                                                            </td>
+                                                            <td style="vertical-align:middle;"> {{CDia}}</td>
+                                                            <td style="vertical-align:middle;">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-toggle="modal" data-target="#alert"
+                                                                    data-id="/start/delete/{{idCDia}}">
+                                                                    <i class="fas fa-fw fa-trash-alt"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <i class="fas fa-table"></i>
+                                                Vehículos
+                                                <a class="btn btn-success float-right" data-toggle="modal"
+                                                    data-target="#new" href="#">
+                                                    Nuevo
+                                                </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <table class="table table-bordered" id="dataTable1" width="100%"
+                                                    cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>N°</th>
+                                                            <th>Vehiculo</th>
+                                                            <th>Tarea</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>N°</th>
+                                                            <th>Vehiculo</th>
+                                                            <th>Tarea</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                    <tbody>
+                                                        {{#each days}}
+                                                        <tr>
+                                                            <td style="vertical-align:middle;">{{math @index "+" 1}}
+                                                            </td>
+                                                            <td style="vertical-align:middle;"> {{CDia}}</td>
+                                                            <td style="vertical-align:middle;">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-toggle="modal" data-target="#alert"
+                                                                    data-id="/start/delete/{{idCDia}}">
+                                                                    <i class="fas fa-fw fa-trash-alt"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <i class="fas fa-table"></i>
+                                                Personal que Concurrió
+                                                <a class="btn btn-success float-right" data-toggle="modal"
+                                                    data-target="#new" href="#">
+                                                    Nuevo
+                                                </a>
+                                            </div>
+                                            <div class="card-body">
+                                                <table class="table table-bordered" id="dataTable" width="100%"
+                                                    cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>N°</th>
+                                                            <th>Personal</th>
+                                                            <th>Tarea</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>N°</th>
+                                                            <th>Personal</th>
+                                                            <th>Tarea</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                    <tbody>
+                                                        {{#each days}}
+                                                        <tr>
+                                                            <td style="vertical-align:middle;">{{math @index "+" 1}}
+                                                            </td>
+                                                            <td style="vertical-align:middle;"> {{CDia}}</td>
+                                                            <td style="vertical-align:middle;">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-toggle="modal" data-target="#alert"
+                                                                    data-id="/start/delete/{{idCDia}}">
+                                                                    <i class="fas fa-fw fa-trash-alt"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        {{/each}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Forma de aviso -->
+                        <div class="tab-pane fade" id="aviso" role="tabpanel" aria-labelledby="aviso-tab">
+                            <div class="border container">
+                                <div class="row p-2">
+                                    <div class="col-md-8">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Forma de Aviso</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    {{#each notice}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="idFAviso" id="option1"
+                                                            value="{{idFAviso}}">
+                                                        {{FAviso}}
+                                                    </label>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Hora salida Unidad(es)</h5>
+                                            </div>
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Accion</th>
+                                                        <th>Hora</th>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>Accion</th>
+                                                        <th>Hora</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Aviso</td>
+                                                        <td>
+                                                            <input type="text" class="form-control" id="hora1"
+                                                                name="HAviso" autocomplete="off"
+                                                                placeholder="Seleccione una hora">
+                                                            </input>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Salida de Unidad(es)</td>
+                                                        <td>
+                                                            <input type="text" class="form-control" id="hora2"
+                                                                name="HSalida" autocomplete="off"
+                                                                placeholder="Seleccione una hora">
+                                                            </input>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Unidad(es) en el lugar</td>
+                                                        <td>
+                                                            <input type="text" class="form-control" id="hora3"
+                                                                name="HLugar" autocomplete="off"
+                                                                placeholder="Seleccione una hora">
+                                                            </input>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Fin de Op. y Ret.</td>
+                                                        <td>
+                                                            <input type="text" class="form-control" id="hora4"
+                                                                name="HFin" autocomplete="off"
+                                                                placeholder="Seleccione una hora">
+                                                            </input>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ingreso al Cuartel</td>
+                                                        <td>
+                                                            <input type="text" class="form-control" id="hora5"
+                                                                name="HCuartel" autocomplete="off"
+                                                                placeholder="Seleccione una hora">
+                                                            </input>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Localizacion-->
+                        <div class="tab-pane fade" id="localizacion" role="tabpanel" aria-labelledby="localizacion-tab">
+                            <div class="border container">
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Localizacion</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row container">
+                                                    <div class="form-group col-md-4">
+                                                        <label>Provincia: </label>
+                                                        <select name="idProvincia" id="Provincia"
+                                                            class="btn btn-light col-md-6">
+                                                            {{#each provinces}}
+                                                            <option value="{{idProvincia}}">{{Provincia}}</option>
+                                                            {{/each}}
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label>Cantón: </label>
+                                                        <select name="idCanton" id="Canton"
+                                                            class="btn btn-light col-md-6">
+                                                            <option>Seleccionar</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label>Parroquia: </label>
+                                                        <select name="idParroquia" id="Parroquia"
+                                                            class="btn btn-light col-md-6">
+                                                            <option>Seleccionar</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row container">
+                                                    <div class="form-group col-md-6">
+                                                        <label>Dirección </label>
+                                                        <input class="form-control" type="text" name="Direccion"
+                                                            placeholder="Ingrese dirección de la emergéncia" autofocus>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label for="Provincia">Teléfono </label>
+                                                        <input class="form-control" type="text" name="Telefono"
+                                                            placeholder="Ingrese teléfono" autofocus>
+                                                    </div>
+                                                </div>
+                                                <div class="row container">
+                                                    <div class="form-group col-md-6">
+                                                        <label>Sector N°:</label>
+                                                        <input class="form-control" type="text" name="Sector"
+                                                            placeholder="Ingrese sector" autofocus>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label>Tipo de secctor:</label>
+                                                        <div>
+                                                            <label class="btn btn-light">
+                                                                <input type="radio" name="TSector" id="option1"
+                                                                    value="Urbano">
+                                                                Urbano
+                                                            </label>
+                                                            <label class="btn btn-light">
+                                                                <input type="radio" name="TSector" id="option1"
+                                                                    value="Rural">
+                                                                Rural
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label>Otros Datos:</label>
+                                                        <textarea class="form-control" type="text" name="Otros"
+                                                            rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Tipo de local-->
+                        <div class="tab-pane fade" id="local" role="tabpanel" aria-labelledby="local-tab">
+                            <div class="border container">
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Local</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    {{#each emergency}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="idTEmergencia" id="option1"
+                                                            value="{{idTEmergencia}}">
+                                                        {{TEmergencia}}
+                                                    </label>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Afectado-->
+                        <div class="tab-pane fade" id="afectado" role="tabpanel" aria-labelledby="afectado-tab">
+                            <div class="border container">
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Afectado</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    {{#each emergency}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="idTEmergencia" id="option1"
+                                                            value="{{idTEmergencia}}">
+                                                        {{TEmergencia}}
+                                                    </label>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Causa de incendio-->
+                        <div class="tab-pane fade" id="causa" role="tabpanel" aria-labelledby="causa-tab">
+                            <div class="border container">
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Causa de incendio</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    {{#each emergency}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="idTEmergencia" id="option1"
+                                                            value="{{idTEmergencia}}">
+                                                        {{TEmergencia}}
+                                                    </label>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Daños-->
+                        <div class="tab-pane fade" id="daños" role="tabpanel" aria-labelledby="daños-tab">
+                            <div class="border container">
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Daños</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    {{#each emergency}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="idTEmergencia" id="option1"
+                                                            value="{{idTEmergencia}}">
+                                                        {{TEmergencia}}
+                                                    </label>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Lugar de inicio-->
+                        <div class="tab-pane fade" id="inicio" role="tabpanel" aria-labelledby="inicio-tab">
+                            <div class="border container">
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Inicio</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    {{#each emergency}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="idTEmergencia" id="option1"
+                                                            value="{{idTEmergencia}}">
+                                                        {{TEmergencia}}
+                                                    </label>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Descripción-->
+                        <div class="tab-pane fade" id="descripcion" role="tabpanel" aria-labelledby="descripcion-tab">
+                            <div class="border container">
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Descripcion</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    {{#each emergency}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="idTEmergencia" id="option1"
+                                                            value="{{idTEmergencia}}">
+                                                        {{TEmergencia}}
+                                                    </label>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Croquis-->
+                        <div class="tab-pane fade" id="croquis" role="tabpanel" aria-labelledby="croqis-tab">
+                            <div class="border container">
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Corquis</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    {{#each emergency}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="idTEmergencia" id="option1"
+                                                            value="{{idTEmergencia}}">
+                                                        {{TEmergencia}}
+                                                    </label>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Novedades-->
+                        <div class="tab-pane fade" id="novedades" role="tabpanel" aria-labelledby="novedades-tab">
+                            <div class="border container">
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Novedades</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    {{#each emergency}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="idTEmergencia" id="option1"
+                                                            value="{{idTEmergencia}}">
+                                                        {{TEmergencia}}
+                                                    </label>
+                                                    {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-footer">
+                                                <button class="btn btn-primary">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {{!-- <div class="border border-dark rounded">
+                        <div class="border border-dark container">
+                            <div class="row container-fluid">
+
+                                <h5>1.- Datos Generales</h5>
+                            </div>
+                            <div class="row container-fluid">
+                                <div class="container">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        {{#each emergency}}
+                                        <label class="btn btn-secondary active">
+                                            <input type="radio" name="options" id="option1" value="{{idTEmergencia}} ">
+                                            {{TEmergencia}}
+                                        </label>
+                                        {{/each}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row container-fluid">
+
+                            </div>
+                        </div>
+                        <div class="border border-dark">
+                            <h1>Datos Generales</h1>
+                        </div>
+                    </div> --}}
+                </form>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+</main1>

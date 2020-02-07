@@ -5,8 +5,8 @@ var Injury = {
         const injury = await pool.query('SELECT * FROM TLesion',callback);
         return injury;
     },
-    listInjury: async function(id,callback){
-        const injury = await pool.query('SLECT * FROM TLesion WHERE idTLesion = ?',[id],callback);
+    listInjuryId: async function(id,callback){
+        const injury = await pool.query('SELECT * FROM TLesion WHERE idTLesion = ?',[id],callback);
         return injury;
     },
     addInjury: async function(newInjury,callback){

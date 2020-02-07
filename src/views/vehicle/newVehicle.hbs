@@ -8,15 +8,15 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
-                    <li class="breadcrumb-item"><a href="/users"> Usuarios</a></li>
-                    <li class="breadcrumb-item">Nuevo Usuario</li>
+                    <li class="breadcrumb-item"><a href="/vehicle"> Vehiculos</a></li>
+                    <li class="breadcrumb-item">Nuevo Vehiculo</li>
                 </ol>
 
                 {{> messaje}}
 
                 <div class="container">
                     <div class="col-md-9 mx-auto">
-                        <form action="/users/add" method="POST" enctype="multipart/form-data">
+                        <form action="/vehicle/add" method="POST" enctype="multipart/form-data">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="container">
@@ -46,42 +46,18 @@
                                             </span>
                                             <span class="col-md-8">
                                                 <div class="form-group">
-                                                    <input type="text" name="Cedula" placeholder="Cédula"
+                                                    <input type="text" name="Placa" placeholder="Placa"
                                                         class="form-control" autofocus>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" name="Nombres" placeholder="Nombres"
-                                                        class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="text" name="Apellidos" placeholder="Apellidos"
-                                                        class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <span class="col-md-7">
-                                                            <label for="idRango">Rango: </label>
-                                                            <select class="btn btn-light" name="idRango">
-                                                                <option selected>Choose...</option>
-                                                                {{#each ranges}}
-                                                                <option value="{{idRango}} ">{{Rango}} </option>
-                                                                {{/each}}
-                                                            </select>
-                                                        </span>
-                                                        <span class="col-md-5">
-                                                            <label for="idRol">Rol: </label>
-                                                            <select class="btn btn-light" name="idRol">
-                                                                <option selected>Choose...</option>
-                                                                {{#each roles}}
-                                                                <option value="{{idRol}} ">{{Rol}}</option>
-                                                                {{/each}}
-                                                            </select>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="password" name="Contrasenia" placeholder="Contraseña"
-                                                        class="form-control">
+                                                    <label for="Color">Rango: </label>
+                                                    <select class="btn btn-light" name="Color">
+                                                        <option value="" disabled>seleccione una opcion</option>
+                                                        <option value="Motobomba">Motobomba</option>
+                                                        <option value="Camioneta">Camioneta</option>
+                                                        <option value="Automovil">Automovil</option>
+                                                        <option value="Motocicleta">Motocicleta</option>
+                                                    </select>
                                                 </div>
                                             </span>
                                         </div>
@@ -95,7 +71,7 @@
                                             </button>
                                         </span>
                                         <span class="col-md-3">
-                                            <a href="/users" class="btn btn-secondary">Cancelar</a>
+                                            <a href="/vehicle" class="btn btn-secondary">Cancelar</a>
                                         </span>
                                     </div>
                                 </div>

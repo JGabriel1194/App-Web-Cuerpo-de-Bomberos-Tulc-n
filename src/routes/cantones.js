@@ -56,6 +56,7 @@ router.post('/add',isLoggedIn,async(req,res)=>{
 //Router for to show the view to update a canton selected
 router.get('/edit/:id',isLoggedIn,async(req,res)=>{
     const {id} = req.params;
+    console.log(id)
     await Cantones.listCantonId(id,function(err,canton){
         if(err){
             console.log(err);
@@ -64,6 +65,7 @@ router.get('/edit/:id',isLoggedIn,async(req,res)=>{
                 if(err){
                     console.log(err);
                 }else{
+                    res.send(canton)
                     res.render('cantones/editCanton',{canton: canton[0],province});
                 }
             });
@@ -96,5 +98,17 @@ router.get('/delete/:id',isLoggedIn,async(req,res)=>{
             res.redirect('/cantones');
         }
     });
-})
+});
+
+//Router for to select canton by id whit ajax
+router.get('/list/:id',isLoggedIn,async(req,res)=>{
+    const {id} = req.params;
+    await Cantones.listCantId(id,function(err,canton){
+        if(err){
+            res.json(err);
+        }else{
+            res.json(canton);
+        }
+    })
+});
 module.exports = router;

@@ -6,16 +6,16 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/dashboard">Panel</a></li>
-                    <li class="breadcrumb-item"><a href="/injury">Lesiones</a></li>
-                    <li class="breadcrumb-item">Editar Lesión</li>
+                    <li class="breadcrumb-item"><a href="/local">Tipo de Local</a></li>
+                    <li class="breadcrumb-item">Editar Local</li>
                 </ol>
                 <div class="container">
                     <div class="col-md-4 mx-auto">
-                        <form action="/injury/edit/{{injury.idTLesion}}" method="POST"
+                        <form action="/local/edit/{{local.idTLocal}}" method="POST"
                             enctype="multipart/form-data">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Editar Lesión</h4>
+                                    <h4>Editar Tipo de Local</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="container">
@@ -23,8 +23,8 @@
                                             <span class="col-md-12">
                                                 <span>
                                                     <div class="form-group">
-                                                        <input type="text" name="TLesion" placeholder="Lesión"
-                                                            class="form-control" value="{{injury.TLesion}} "
+                                                        <input type="text" name="TLocal" placeholder="Tipo de Local"
+                                                            class="form-control" value="{{local.TLocal}} "
                                                             autofocus>
                                                     </div>
                                                 </span>
@@ -40,7 +40,7 @@
                                             </button>
                                         </span>
                                         <span class="col-md-3">
-                                            <a href="/injury" class="btn btn-secondary">Cancelar</a>
+                                            <a href="/local" class="btn btn-secondary">Cancelar</a>
                                         </span>
                                     </div>
                                 </div>

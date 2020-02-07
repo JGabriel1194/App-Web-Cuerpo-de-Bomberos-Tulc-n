@@ -17,7 +17,7 @@ var Local = {
         const local = await pool.query('UPDATE TLocal SET ? WHERE idTLocal = ?',[newLocal,id],callback);
         return local;
     },
-    deleteLocal: async function(id){
+    deleteLocal: async function(id,callback){
         const local = await pool.query('DELETE FROM TLocal WHERE idTLocal = ?',[id],callback);
         return local;
     }

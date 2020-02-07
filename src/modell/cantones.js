@@ -20,6 +20,10 @@ var Cantones = {
     delCanton: async function(id,callback){
         const canton = await pool.query("DELETE FROM Canton WHERE idCanton = ?",[id],callback);
         return canton;
+    },
+    listCantId: async function(id,callback){
+        const canton = await pool.query("SELECT * FROM Canton WHERE idProvincia = ?",[id],callback);
+        return canton;
     }
 };
 
