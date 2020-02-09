@@ -4,8 +4,10 @@ const Emergency = require('../modell/emergency');
 const Days = require('../modell/days');
 const Notice = require('../modell/notice');
 const Province = require('../modell/provinces');
-const Canton = require('../modell/cantones');
-const Parish = require('../modell/parish');
+const Local = require('../modell/local');
+const Cause = require('../modell/cause');
+const Death = require('../modell/death');
+const Start = require('../modell/start');
 const {isLoggedIn} = require('../lib/auth');
 const Role = require('../modell/roles');
 
@@ -42,12 +44,44 @@ router.get('/add',isLoggedIn,async(req,res)=>{
                                     console.log('Err. Province',err);
                                     res.render('parte/newParte');
                                 }else{
-                                    res.render('parte/newParte',{
-                                        emergency,
-                                        days,
-                                        notice,
-                                        provinces
-                                    });  
+                                    Local.listLocal(function(err,local){
+                                        if(err){
+                                            console.log('Err. Local',err);
+                                            res.render('parte/newParte');
+                                        }else{
+                                            Cause.listCause(function(err,cause){
+                                                if(err){
+                                                    console.log('Err. Cause',err);
+                                                    res.render('parte/newParte');
+                                                }else{
+                                                    Death.listDeath(function(err,death){
+                                                        if(err){
+                                                            console.log('Err. Death',err);
+                                                            res.render('parte/newParte');
+                                                        }else{
+                                                            Start.listStart(function(err,start){
+                                                                if(err){
+                                                                    console.log('Err. Start',err);
+                                                                    res.render('parte/newParte');
+                                                                }else{
+                                                                    res.render('parte/newParte',{
+                                                                        emergency,
+                                                                        days,
+                                                                        notice,
+                                                                        provinces,
+                                                                        local,
+                                                                        cause,
+                                                                        death,
+                                                                        start
+                                                                    });
+                                                                }
+                                                            });
+                                                        };
+                                                    });
+                                                };
+                                            });
+                                        };
+                                    });
                                 };
                             });
                         };
@@ -79,10 +113,28 @@ router.post('/add',isLoggedIn,async(req,res)=>{
         Telefono: req.body.Telefono,
         Sector: req.body.Sector,
         TSector: req.body.TSector,
-        Otros: req.body.Otros
+        Otros: req.body.Otros,
+        idTLocal: req.body.idTLocal,
+        NLocal: req.body.NLocal,
+        Propietario: req.body.Propietario,
+        Propiedad: req.body.Propiedad,
+        idCausa: req.body.idCausa,
+        Causante: req.body.Causante,
+        Identificado: req.body.Identificado,
+        Muertos: req.body.Muertos,
+        Heridos: req.body.Heridos,
+        NHerido: req.body.NHerido,
+        Edad: req.body.Edad,
+        idCMuerte: req.body.idCMuerte,
+        Especies: req.body.Especies,
+        Area: req.body.Area,
+        Descripcion: req.body.Descripcion,
+        idLInicio: req.body.idLInicio,
+        Operaciones: req.body.Operaciones,
+        Novedades: req.body.Novedades
     };
     console.log(newParte);
-    res.redirect('/parte')
+    res.json(newParte);
 });
 
 //Router for to show the view to update a data selected

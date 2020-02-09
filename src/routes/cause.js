@@ -46,7 +46,6 @@ router.get('/edit/:id',isLoggedIn,async(req,res)=>{
             req.flash('message','Error al Editar')
             res.redirect('/cause');
         }else{
-            //res.send({ cause: cause[0] });
             res.render('cause/editCause',{cause: cause[0]}); 
         }
     });

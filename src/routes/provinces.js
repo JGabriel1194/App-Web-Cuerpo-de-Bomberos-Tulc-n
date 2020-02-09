@@ -51,7 +51,7 @@ router.post('/add',isLoggedIn,async(req,res)=>{
 
 //Router for to show the view to update a province selected
 router.get('/edit/:id',isLoggedIn,async(req,res)=>{
-    const {id} = req.params;
+    const {id} = req.params; 
     await Provinces.listProvinceId(id,function(err,province){
         if(err){
             console.log(err);

@@ -545,15 +545,15 @@
                                     <div class="col-md-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5>Local</h5>
+                                                <h5>Tipo de Local</h5>
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <div class="btn" data-toggle="buttons">
-                                                    {{#each emergency}}
+                                                    {{#each local}}
                                                     <label class="btn btn-light">
-                                                        <input type="radio" name="idTEmergencia" id="option1"
-                                                            value="{{idTEmergencia}}">
-                                                        {{TEmergencia}}
+                                                        <input type="radio" name="idTLocal" id="option1"
+                                                            value="{{idTLocal}}">
+                                                        {{TLocal}}
                                                     </label>
                                                     {{/each}}
                                                 </div>
@@ -578,20 +578,46 @@
                         <div class="tab-pane fade" id="afectado" role="tabpanel" aria-labelledby="afectado-tab">
                             <div class="border container">
                                 <div class="row p-2">
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5>Afectado</h5>
+                                                <h5>Datos del Afectado</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row container">
+                                                    <div class="form-group col-md-12">
+                                                        <label>Nombre del Local:</label>
+                                                        <input class="form-control" type="text" name="NLocal"
+                                                            placeholder="Ingrese Nombre De Local" autofocus>
+                                                    </div>
+                                                </div>
+                                                <div class="row container">
+                                                    <div class="form-group col-md-12">
+                                                        <label>Propietario/Arrendatario:</label>
+                                                        <input class="form-control" type="text" name="Propietario"
+                                                            placeholder="Ingrese Propietario/Arrendatario" autofocus>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Estado del Local</h5>
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <div class="btn" data-toggle="buttons">
-                                                    {{#each emergency}}
                                                     <label class="btn btn-light">
-                                                        <input type="radio" name="idTEmergencia" id="option1"
-                                                            value="{{idTEmergencia}}">
-                                                        {{TEmergencia}}
+                                                        <input type="radio" name="Propiedad" id="option1"
+                                                            value="Propio">
+                                                        Propio
                                                     </label>
-                                                    {{/each}}
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="Propiedad" id="option1"
+                                                            value="Arrendado">
+                                                        Arrendado
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
@@ -621,13 +647,48 @@
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <div class="btn" data-toggle="buttons">
-                                                    {{#each emergency}}
+                                                    {{#each cause}}
                                                     <label class="btn btn-light">
-                                                        <input type="radio" name="idTEmergencia" id="option1"
-                                                            value="{{idTEmergencia}}">
-                                                        {{TEmergencia}}
+                                                        <input type="radio" name="idCausa" id="option1"
+                                                            value="{{idCausa}}">
+                                                        {{Causa}}
                                                     </label>
                                                     {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Causante Identificado</h5>
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <div class="btn" data-toggle="buttons">
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="Identificado" id="option1" value="Si">
+                                                        Si
+                                                    </label>
+                                                    <label class="btn btn-light">
+                                                        <input type="radio" name="Identificado" id="option1" value="No">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Causante</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-group col-md-12">
+                                                    <label>Nombre del Causante:</label>
+                                                    <input class="form-control" type="text" name="Causante"
+                                                        placeholder="Ingrese Nombre del causante" autofocus>
                                                 </div>
                                             </div>
                                         </div>
@@ -653,17 +714,82 @@
                                     <div class="col-md-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5>Daños</h5>
+                                                <h5>Perdidas Humanas</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row container">
+                                                    <div class="form-group col-md-6">
+                                                        <label>N° Muertos </label>
+                                                        <input class="form-control" type="text" name="Muertos"
+                                                            placeholder="N° Muertos" autofocus>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>N° Heridos </label>
+                                                        <input class="form-control" type="text" name="Heridos"
+                                                            placeholder="N° Heridos" autofocus>
+                                                    </div>
+                                                </div>
+                                                <div class="row container">
+                                                    <div class="form-group col-md-10">
+                                                        <label>Nombres </label>
+                                                        <input class="form-control" type="text" name="NHerido"
+                                                            placeholder="Nombres y Apellidos" autofocus>
+                                                    </div>
+                                                    <div class="form-group col-md-2">
+                                                        <label>Edad </label>
+                                                        <input class="form-control" type="text" name="Edad"
+                                                            placeholder="Edad" autofocus>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Causa de Muerte</h5>
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <div class="btn" data-toggle="buttons">
-                                                    {{#each emergency}}
+                                                    {{#each death}}
                                                     <label class="btn btn-light">
-                                                        <input type="radio" name="idTEmergencia" id="option1"
-                                                            value="{{idTEmergencia}}">
-                                                        {{TEmergencia}}
+                                                        <input type="radio" name="idCMuerte" id="option1"
+                                                            value="{{idCMuerte}}">
+                                                        {{CMuerte}}
                                                     </label>
                                                     {{/each}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>Area Destruida Aproximada</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row container">
+                                                    <div class="form-group col-md-6">
+                                                        <label>Especies Predominantes(Detalle) </label>
+                                                        <input class="form-control" type="text" name="Especies"
+                                                            placeholder="Especies Predominantes" autofocus>
+                                                    </div>
+                                                    <div class="form-group col-md-4">
+                                                        <label for="Provincia">Área Destruida(m2) </label>
+                                                        <input class="form-control" type="text" name="Area"
+                                                            placeholder="Área Destruida" autofocus>
+                                                    </div>
+                                                </div>
+                                                <div class="row container">
+                                                    <div class="form-group col-md-12">
+                                                        <label>Describa los Daños:</label>
+                                                        <textarea class="form-control" type="text" name="Descripcion"
+                                                            rows="5"></textarea>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -689,15 +815,15 @@
                                     <div class="col-md-12">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5>Inicio</h5>
+                                                <h5>Lugar de Posible Inicio</h5>
                                             </div>
                                             <div class="d-flex justify-content-center">
                                                 <div class="btn" data-toggle="buttons">
-                                                    {{#each emergency}}
+                                                    {{#each start}}
                                                     <label class="btn btn-light">
-                                                        <input type="radio" name="idTEmergencia" id="option1"
-                                                            value="{{idTEmergencia}}">
-                                                        {{TEmergencia}}
+                                                        <input type="radio" name="idLInicio" id="option1"
+                                                            value="{{idLInicio}}">
+                                                        {{LInicio}}
                                                     </label>
                                                     {{/each}}
                                                 </div>
@@ -727,15 +853,11 @@
                                             <div class="card-header">
                                                 <h5>Descripcion</h5>
                                             </div>
-                                            <div class="d-flex justify-content-center">
-                                                <div class="btn" data-toggle="buttons">
-                                                    {{#each emergency}}
-                                                    <label class="btn btn-light">
-                                                        <input type="radio" name="idTEmergencia" id="option1"
-                                                            value="{{idTEmergencia}}">
-                                                        {{TEmergencia}}
-                                                    </label>
-                                                    {{/each}}
+                                            <div class="card-body">
+                                                <div class="form-group col-md-12">
+                                                    <label>Describa las operaciones realizadas:</label>
+                                                    <textarea class="form-control" type="text" name="Operaciones"
+                                                        rows="5"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -763,15 +885,9 @@
                                             <div class="card-header">
                                                 <h5>Corquis</h5>
                                             </div>
-                                            <div class="d-flex justify-content-center">
-                                                <div class="btn" data-toggle="buttons">
-                                                    {{#each emergency}}
-                                                    <label class="btn btn-light">
-                                                        <input type="radio" name="idTEmergencia" id="option1"
-                                                            value="{{idTEmergencia}}">
-                                                        {{TEmergencia}}
-                                                    </label>
-                                                    {{/each}}
+                                            <div class="card-body">
+                                                <div id="map">
+                                                    <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d13235.726199037672!2d-77.71589129038843!3d0.8113881256817228!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2sec!4v1581228926349!5m2!1ses!2sec" class="col-md-12" height="500" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                                                 </div>
                                             </div>
                                         </div>
@@ -799,15 +915,11 @@
                                             <div class="card-header">
                                                 <h5>Novedades</h5>
                                             </div>
-                                            <div class="d-flex justify-content-center">
-                                                <div class="btn" data-toggle="buttons">
-                                                    {{#each emergency}}
-                                                    <label class="btn btn-light">
-                                                        <input type="radio" name="idTEmergencia" id="option1"
-                                                            value="{{idTEmergencia}}">
-                                                        {{TEmergencia}}
-                                                    </label>
-                                                    {{/each}}
+                                            <div class="card-body">
+                                                <div class="form-group col-md-12">
+                                                    <label>Describa las novedades presentadas:</label>
+                                                    <textarea class="form-control" type="text" name="Novedades"
+                                                        rows="5"></textarea>
                                                 </div>
                                             </div>
                                         </div>

@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon src/app"
+    "dev": "nodemon src/app",
+    "build": "parcel build --public-url . src/app"
   },
   "keywords": [],
   "author": "Gabriel Soto",

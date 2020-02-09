@@ -65,7 +65,6 @@ router.get('/edit/:id',isLoggedIn,async(req,res)=>{
                 if(err){
                     console.log(err);
                 }else{
-                    res.send(canton)
                     res.render('cantones/editCanton',{canton: canton[0],province});
                 }
             });
